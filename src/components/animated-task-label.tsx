@@ -1,20 +1,19 @@
-import { useEffect, memo } from 'react'
-import { Pressable } from 'native-base'
-import { Text, HStack, Box } from 'native-base'
+import React, { useEffect, memo } from 'react'
+import { Pressable, Text, HStack, Box } from 'native-base'
 import Animated, {
+  Easing,
   useSharedValue,
   useAnimatedStyle,
   withTiming,
+  withSequence,
   withDelay,
-  interpolateColor,
-  Easing,
-  withSequence
+  interpolateColor
 } from 'react-native-reanimated'
 
 interface Props {
   strikethrough: boolean
   textColor: string
-  inactiveTextColor: boolean
+  inactiveTextColor: string
   onPress?: () => void
   children?: React.ReactNode
 }
@@ -34,7 +33,6 @@ const AnimatedTaskLabel = memo((props: Props) => {
     }),
     [strikethrough]
   )
-
   const textColorProgress = useSharedValue(0)
   const textColorAnimatedStyles = useAnimatedStyle(
     () => ({
@@ -46,7 +44,6 @@ const AnimatedTaskLabel = memo((props: Props) => {
     }),
     [strikethrough, textColor, inactiveTextColor]
   )
-
   const strikethroughWidth = useSharedValue(0)
   const strikethroughAnimatedStyles = useAnimatedStyle(
     () => ({
@@ -80,8 +77,14 @@ const AnimatedTaskLabel = memo((props: Props) => {
 
   return (
     <Pressable onPress={onPress}>
-      <AnimatedHStack alignItems="center">
-        <AnimatedText fontSize={19} noOfLines={1} isTruncated px={1}>
+      <AnimatedHStack alignItems="center" style={[hstackAnimatedStyles]}>
+        <AnimatedText
+          fontSize={19}
+          noOfLines={1}
+          isTruncated
+          px={1}
+          style={[textColorAnimatedStyles]}
+        >
           {children}
         </AnimatedText>
         <AnimatedBox
