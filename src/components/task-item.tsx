@@ -9,6 +9,7 @@ import {
   useColorModeValue
 } from 'native-base'
 import AnimatedCheckbox from 'react-native-checkbox-reanimated'
+import AnimatedTaskLabel from './animated-task-label'
 
 interface Props {
   isDone: boolean
@@ -61,6 +62,13 @@ const TaskItem = (props: Props) => {
           />
         </Pressable>
       </Box>
+      <AnimatedTaskLabel
+        textColor={activeTextColor}
+        inactiveTextColor={doneTextColor}
+        strikethrough={isDone}
+      >
+        Task Item
+      </AnimatedTaskLabel>
       <Text>Task Item</Text>
     </HStack>
   )
