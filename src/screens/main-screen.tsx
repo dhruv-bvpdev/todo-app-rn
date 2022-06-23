@@ -2,9 +2,10 @@ import { useState, useCallback } from 'react'
 import { AntDesign } from '@expo/vector-icons'
 import shortid from 'shortid'
 import TaskList from '../components/task-list'
-import { Center, Fab, Icon, useColorModeValue, VStack } from 'native-base'
+import { Fab, Icon, Text, useColorModeValue, VStack } from 'native-base'
 import ThemeToggle from '../components/theme-toggle'
 import AnimatedColorBox from '../components/animate-color-box'
+import Masthead from '../components/masthead'
 
 const initialData = [
   {
@@ -68,6 +69,12 @@ export default function MainScreen() {
       bg={useColorModeValue('warmGray.50', 'primary.900')}
       w="full"
     >
+      <Masthead
+        title="What's up, Dhruv!"
+        image={require('../assets/masthead.png')}
+      >
+        <Text>Hello</Text>
+      </Masthead>
       <VStack space={5} alignItems="center" w="full">
         <TaskList
           data={data}
