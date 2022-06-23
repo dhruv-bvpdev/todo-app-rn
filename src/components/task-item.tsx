@@ -69,7 +69,6 @@ const TaskItem = (props: Props) => {
       >
         Task Item
       </AnimatedTaskLabel>
-      <Text>Task Item</Text>
     </HStack>
   )
 }
